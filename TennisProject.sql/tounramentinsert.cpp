@@ -38,13 +38,12 @@ try {
  cout << "Year of birth : ";
  cin >> bornyear;
  
- /* Create a connection */
  driver = get_driver_instance();
  
 con = driver->connect("tcp://127.0.0.1:3306", "root", "");
 
 
-/* Connect to the MySQL music database */
+
  con->setSchema("music");
  
 prep_stmt = con->prepareStatement("INSERT INTO musicians (firstname, lastname, born) " \
@@ -59,32 +58,3 @@ prep_stmt->execute();
 
 stmt = con->createStatement();
 
-/*
-res = stmt->executeQuery("SELECT LAST_INSERT_ID() as id");
-res->next();
-musicianid = res->getInt("id");
-cout << "last id " << musicianid << endl;
-                                   
-prep_stmt = con->prepareStatement("INSERT INTO instrumentsplayed (musician, instrument) " \
-                                   "VALUES(?,?)");
-prep_stmt->setInt(1, musicianid);
-prep_stmt->setString(2, instrument); 
-
-prep_stmt->execute();
-    
- 
-
- delete res;
- delete prep_stmt;
- delete con;
-    
-} catch (sql::SQLException &e) {
- cout << "# ERR: SQLException in " << __FILE__;
- cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
- cout << "# ERR: " << e.what();
- cout << " (MySQL error code: " << e.getErrorCode();
- cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-}
-cout << endl;
-return EXIT_SUCCESS;
-}
