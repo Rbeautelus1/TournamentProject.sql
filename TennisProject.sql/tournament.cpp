@@ -1,10 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
-/*
- Include directly the different
- headers from cppconn/ and mysql_driver.h + mysql_util.h
- (and mysql_connection.h). This will reduce your build time!
-*/
+
 #include "mysql_connection.h"
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
@@ -13,14 +9,9 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
-// This program retrieves all of the musicians
 
-// Compile:
-// g++ -I/usr/include tournament.cpp -o tournament -I /usr/local/lib -lmysqlcppconn
-// 
-// Execute:
-// ./tournament
-// 
+
+
  sql::Driver *driver;
  sql::Connection *con;
  sql::Statement *stmt;
@@ -43,7 +34,6 @@ int main(void)
 try {
 
    
- /* Create a connection */
  driver = get_driver_instance();
 
   
@@ -119,8 +109,7 @@ return EXIT_SUCCESS;
     
  while (res->next()) 
  {
- 
- /* Access column data by alias or column name */
+
      
      cout << res->getString("Player_Id") << " ";
      cout << res->getString("Fname") << " ";
@@ -152,8 +141,6 @@ res = prep_stmt->executeQuery();
 
  while (res->next()) 
  {
-
- /* Access column data by alias or column name */
      
      cout << res->getString("Player_Id") << " ";
      cout << res->getString("Fname") << " ";
@@ -181,8 +168,6 @@ res = prep_stmt->executeQuery();
 
  while (res->next()) 
  {
-
- /* Access column data by alias or column name */
      
      cout << res->getString("StringType") << " ";
      cout << res->getString("NameofRacket") << " ";
@@ -207,8 +192,6 @@ res = prep_stmt->executeQuery();
 
  while (res->next()) 
  {
-
- /* Access column data by alias or column name */
      
      cout << res->getString("Player_Id") << " ";
      cout << res->getString("Fname") << " ";
@@ -238,8 +221,6 @@ res = prep_stmt->executeQuery();
 
  while (res->next()) 
  {
-
- /* Access column data by alias or column name */
      
      cout << res->getInt("Player_Id") << " ";
      cout << res->getString("national") << " ";
